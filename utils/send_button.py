@@ -1,47 +1,35 @@
 import requests
-from utils.env import BASE_URL, BOT_TOKEN
+from utils.env import WEBAPP_URL, BOT_TOKEN
 from utils import texts
-
 
 
 def send_webapp_button(chat_id):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": chat_id,
-        "text": texts.START,
+        "text": "👋 Assalomu alaykum! Quyidagi tugmalar orqali kerakli bo‘limni tanlang:",
         "reply_markup": {
             "inline_keyboard": [
                 [
                     {
-                        "text": "🛍 Magazin",
+                        "text": "📢 E'lonlar",
                         "web_app": {
-                            "url": f"{BASE_URL}"
-                        }
-                    }
-                ],
-                [
-                    {
-                        "text": "🛒 Buyurtmalarim",
-                        "web_app": {
-                            "url": f"{BASE_URL}/profile/orders"
+                            "url": f"{WEBAPP_URL}"
                         }
                     },
                     {
-                        "text": "📞 Bog'lanish",
+                        "text": "📞 Bog‘lanish uchun",
                         "callback_data": "contact_info"
                     }
+
                 ]
             ]
         }
     }
     response = requests.post(url, json=payload)
-    
+
     if not response.ok:
         print("❌ Inline tugma yuborishda xatolik:", response.text)
-
-
-
-
 
 
 
@@ -50,9 +38,9 @@ def set_menu_webapp():
     payload = {
         "menu_button": {
             "type": "web_app",
-            "text": "Magazin",
+            "text": "📢 E'lonlar",
             "web_app": {
-                "url": f"{BASE_URL}"
+                "url": f"{WEBAPP_URL}"
             }
         }
     }
