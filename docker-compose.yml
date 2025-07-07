@@ -4,7 +4,7 @@ version: "3.9"
 services:
   bot:
     build: .
-    container_name: oriendbook_bot
+    container_name: uytop_bot
     restart: unless-stopped
     env_file:
       - .env
