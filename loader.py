@@ -11,7 +11,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(token=BOT_TOKEN, parse_mode="HTML")
+bot = Bot(token=BOT_TOKEN, parse_mode="HTML", timeout=60)
 
 storage = MemoryStorage()
 
